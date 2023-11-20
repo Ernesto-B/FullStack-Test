@@ -1,12 +1,25 @@
-import './App.css';
+import React, { useState } from 'react';
+import Login from './Login';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = (username, password) => {
+    // Here, add logic to authenticate the user
+
+    setIsLoggedIn(true);
+  };
+
   return (
-    <>
-      <h1 className="title">
-        Expenses Tracker
-      </h1>
-    </>
+    <div className="App">
+      {!isLoggedIn ? (
+        <Login onLogin={handleLogin} />
+      ) : (
+        <div>
+          <h1>Home</h1>
+        </div>
+      )}
+    </div>
   );
 }
 
