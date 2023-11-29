@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 function Login({ onLogin }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [termsAccepted, setTermsAccepted] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (termsAccepted) { onLogin(username, password); }
+        onLogin(username, password); // This should be replaced with your authentication logic
     };
 
     return (
@@ -42,9 +41,6 @@ function Login({ onLogin }) {
                         />
                     </div>
                     <div className="flex items-center justify-between">
-                        <label for="terms-and-conditions">
-                            <input id="terms-and-conditions" type="checkbox" onChange={(e) => setTermsAccepted(e.target.value)} required /> Please accept the terms and conditions.
-                        </label>
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                             Sign In
                         </button>

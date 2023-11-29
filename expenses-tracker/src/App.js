@@ -1,24 +1,45 @@
 import React, { useState } from 'react';
 import Login from './Login';
+import RegistrationForm from './RegistrationForm';
+// Import your Register component if you have one
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [action, setAction] = useState(''); // 'login' or 'register'
 
   const handleLogin = (username, password) => {
-    // Here, add logic to authenticate the user
-
+    // Add login logic here
     setIsLoggedIn(true);
+  };
+
+  const handleRegister = (username, password) => {
+    // Add registration logic here
+    setIsLoggedIn(true);
+  };
+
+  const renderForm = () => {
+    switch (action) {
+      case 'login':
+        return <Login onLogin={handleLogin} />;
+      case 'register':
+        return <RegistrationForm onRegister={handleRegister} />;
+      default:
+        return (
+          <div className="flex flex-col items-center justify-center space-y-4">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setAction('login')}>
+              Login
+            </button>
+            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={() => setAction('register')}>
+              Register
+            </button>
+          </div>
+        );
+    }
   };
 
   return (
     <div className="App">
-      {!isLoggedIn ? (
-        <Login onLogin={handleLogin} />
-      ) : (
-        <div>
-          <h1>Home</h1>
-        </div>
-      )}
+      {!isLoggedIn ? renderForm() : <div>Welcome to the app!</div>}
     </div>
   );
 }
