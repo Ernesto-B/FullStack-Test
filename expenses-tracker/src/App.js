@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Layout from './Layout';
 import Login from './Login';
 import RegistrationForm from './RegistrationForm';
 // Import your Register component if you have one
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      {!isLoggedIn ? renderForm() : <div>Welcome to the app!</div>}
+      {!isLoggedIn ? renderForm() : <Layout />}
     </div>
   );
 }
