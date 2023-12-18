@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import Layout from './Layout';
-import Login from './Login';
-import RegistrationForm from './RegistrationForm';
-// Import your Register component if you have one
+import React from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import Layout from "./Layout";
+import Login from "./Login";
+import RegistrationForm from "./RegistrationForm";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [action, setAction] = useState(''); // 'login' or 'register'
+  const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const handleLogin = (username, password) => {
     // Add login logic here
@@ -18,29 +19,51 @@ function App() {
     setIsLoggedIn(true);
   };
 
-  const renderForm = () => {
-    switch (action) {
-      case 'login':
-        return <Login onLogin={handleLogin} />;
-      case 'register':
-        return <RegistrationForm onRegister={handleRegister} />;
-      default:
-        return (
-          <div className="flex flex-col items-center justify-center space-y-4">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => setAction('login')}>
-              Login
-            </button>
-            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={() => setAction('register')}>
-              Register
-            </button>
-          </div>
-        );
-    }
+  const handleLogout = () => {
+    // Handle logout
+    setIsLoggedIn(false);
   };
 
   return (
     <div className="App">
-      {!isLoggedIn ? renderForm() : <Layout />}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            isLoggedIn ? (
+              <Layout onLogout={handleLogout} />
+            ) : (
+              <>
+                <h1
+                  id="layoutTitle"
+                  className="text-center text-4xl font-serif p-3"
+                >
+                  Expenses Tracker
+                </h1>
+                <div className="flex flex-col justify-center items-center h-screen space-y-4 bg-gray-100">
+                  <button
+                    onClick={() => navigate("/login")}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline min-w-[200px]"
+                  >
+                    Login
+                  </button>
+                  <button
+                    onClick={() => navigate("/register")}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline min-w-[200px]"
+                  >
+                    Register
+                  </button>
+                </div>
+              </>
+            )
+          }
+        />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route
+          path="/register"
+          element={<RegistrationForm onRegister={handleRegister} />}
+        />
+      </Routes>
     </div>
   );
 }

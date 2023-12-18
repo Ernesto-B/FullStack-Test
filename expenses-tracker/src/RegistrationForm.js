@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function RegistrationForm({ onRegister }) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -11,11 +14,18 @@ function RegistrationForm({ onRegister }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     onRegister(username, password, firstName, lastName, address, phoneNumber);
+    navigateToHome();
+  };
+
+  const navigateToHome = () => {
+    navigate("/"); // Use the path to your register page
   };
 
   return (
     <>
-      <h1 className="text-center text-4xl font-serif mb-6">Expenses Tracker</h1>
+      <h1 id="layoutTitle" className="text-center text-4xl font-serif p-3">
+        Expenses Tracker
+      </h1>
       <div className="flex items-center justify-center h-screen bg-gray-100">
         <form
           onSubmit={handleSubmit}
@@ -58,6 +68,23 @@ function RegistrationForm({ onRegister }) {
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="email"
+            >
+              Email:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="username"
             >
               Username:
@@ -66,6 +93,7 @@ function RegistrationForm({ onRegister }) {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
+              autoComplete="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -82,6 +110,7 @@ function RegistrationForm({ onRegister }) {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
+              autoComplete="new-password"
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
               title="Password must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 8 characters long"
               value={password}
@@ -127,6 +156,12 @@ function RegistrationForm({ onRegister }) {
               Register
             </button>
           </div>
+          <p>
+            Already a user?
+            <Link to="/login" className="text-blue-500 hover:text-blue-700">
+              Login here.
+            </Link>
+          </p>
         </form>
       </div>
     </>
