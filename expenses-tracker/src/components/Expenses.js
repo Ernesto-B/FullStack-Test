@@ -1,14 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "./Layout";
 
 function Expenses({ onLogout }) {
+  const navigate = useNavigate();
   const [transactionName, setTransactionName] = useState("");
   const [cost, setCost] = useState(0);
   const [details, setDetails] = useState("");
 
+  const handleUserLogout = (event) => {
+    onLogout();
+    navigate("/");
+  };
+
   return (
     <>
-      <Layout onLogout={onLogout} />
+      <Layout onLogout={handleUserLogout} />
       <h1 id="expensesTitle" className="text-3xl text-center">
         Expenses
       </h1>

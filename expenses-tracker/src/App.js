@@ -70,7 +70,7 @@ function App() {
           path="/expenses"
           element={<Expenses onLogout={handleLogout} />}
         />
-        <Route path="/income" element={<Income />} />
+        <Route path="/income" element={<Income onLogout={handleLogout} />} />
       </Routes>
     </div>
   );

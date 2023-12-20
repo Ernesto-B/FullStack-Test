@@ -1,10 +1,18 @@
 import React from "react";
 import Layout from "./Layout";
+import { useNavigate } from "react-router-dom";
 
 function Income({ onLogout }) {
+  const navigate = useNavigate();
+
+  const handleUserLogout = (event) => {
+    onLogout();
+    navigate("/");
+  };
+
   return (
     <>
-      <Layout onLogout={onLogout} />
+      <Layout onLogout={handleUserLogout} />
       <div id="incomeHeader">
         <h1 id="incomeTitle" className="text-3xl text-center">
           Income
