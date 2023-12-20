@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Layout from "./Layout";
-import Login from "./Login";
-import RegistrationForm from "./RegistrationForm";
+import Layout from "./components/Layout";
+import Login from "./components/Login";
+import RegistrationForm from "./components/RegistrationForm";
 
 function App() {
   const navigate = useNavigate();
