@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import Expenses from "./components/Expenses";
 import Layout from "./components/Layout";
 import Login from "./components/Login";
 import RegistrationForm from "./components/RegistrationForm";
