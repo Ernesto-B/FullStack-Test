@@ -13,7 +13,7 @@ function Login({ onLogin }) {
   };
 
   const navigateToHome = () => {
-    navigate("/"); // Use the path to your register page
+    navigate("/dashboard"); // Use the path to your register page
   };
 
   return (

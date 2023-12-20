@@ -6,7 +6,7 @@ export const SidebarData = [
   {
     title: "Dashboard",
     icon: <BarChartIcon />,
-    path: "/",
+    path: "/dashboard",
   },
   {
     title: "Expenses",
