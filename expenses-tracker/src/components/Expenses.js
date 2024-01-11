@@ -23,7 +23,7 @@ function Expenses({ onLogout }) {
       </h1>
       <div
         id="content"
-        className="flex items-center justify-center h-screen bg-gray-100"
+        className="flex items-center justify-center pt-3 bg-gray-100"
       >
         <form
           id="expenseForm"

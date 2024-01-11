@@ -49,8 +49,6 @@ function Layout({ onLogout }) {
       >
         {!isSidebarOpen ? <ArrowForwardIosIcon /> : <ArrowBackIosNewIcon />}
       </button>
-
-      <div id="main-content"></div>
     </>
   );
 }
