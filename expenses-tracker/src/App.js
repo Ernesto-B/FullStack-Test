@@ -5,6 +5,7 @@ import Expenses from "./components/Expenses";
 import Income from "./components/Income";
 import Login from "./components/Login";
 import RegistrationForm from "./components/RegistrationForm";
+import ViewTransactions from "./components/ViewTransactions";
 
 function App() {
   const navigate = useNavigate();
@@ -76,6 +77,10 @@ function App() {
           element={<Expenses onLogout={handleLogout} />}
         />
         <Route path="/income" element={<Income onLogout={handleLogout} />} />
+        <Route
+          path="/transactions"
+          element={<ViewTransactions onLogout={handleLogout} />}
+        />
       </Routes>
     </div>
   );
