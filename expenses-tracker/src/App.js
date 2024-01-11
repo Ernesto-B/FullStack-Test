@@ -3,7 +3,6 @@ import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Expenses from "./components/Expenses";
 import Income from "./components/Income";
-import Layout from "./components/Layout";
 import Login from "./components/Login";
 import RegistrationForm from "./components/RegistrationForm";
 
@@ -36,20 +35,20 @@ function App() {
             <>
               <h1
                 id="layoutTitle"
-                className="text-center text-4xl font-serif p-3"
+                className="text-4xl pb-3 text-center cursor-pointer lg:text-6xl font-bold text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out"
               >
                 Expenses Tracker
               </h1>
               <div className="flex flex-col justify-center items-center h-screen space-y-4 bg-gray-100">
                 <button
                   onClick={() => navigate("/login")}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline min-w-[200px]"
+                  className="bg-blue-500 hover:bg-blue-700 transition ease-out duration-300 text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline min-w-[200px]"
                 >
                   Login
                 </button>
                 <button
                   onClick={() => navigate("/register")}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline min-w-[200px]"
+                  className="bg-blue-500 hover:bg-blue-700 transition ease-out duration-300 text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline min-w-[200px]"
                 >
                   Register
                 </button>
@@ -59,7 +58,13 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={isLoggedIn ? <Dashboard /> : <Login onLogin={handleLogin} />}
+          element={
+            isLoggedIn ? (
+              <Dashboard onLogout={handleLogout} />
+            ) : (
+              <Login onLogin={handleLogin} />
+            )
+          }
         />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route

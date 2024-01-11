@@ -5,6 +5,8 @@ import Layout from "./Layout";
 function Expenses({ onLogout }) {
   const navigate = useNavigate();
   const [transactionName, setTransactionName] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [frequency, setFrequency] = useState("");
   const [cost, setCost] = useState(0);
   const [details, setDetails] = useState("");
 
