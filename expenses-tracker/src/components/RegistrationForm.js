@@ -23,7 +23,10 @@ function RegistrationForm({ onRegister }) {
 
   return (
     <>
-      <h1 id="layoutTitle" className="text-center text-4xl font-serif p-3">
+      <h1
+        id="layoutTitle"
+        className="text-4xl pb-3 text-center cursor-pointer lg:text-6xl font-bold text-blue-600 hover:text-blue-800 transition duration-300 ease-in-out"
+      >
         Expenses Tracker
       </h1>
       <div className="flex items-center justify-center h-screen bg-gray-100">

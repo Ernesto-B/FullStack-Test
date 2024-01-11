@@ -5,7 +5,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Sidebar from "./Sidebar";
 function Layout({ onLogout }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  // ... existing code
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -50,8 +49,6 @@ function Layout({ onLogout }) {
       >
         {!isSidebarOpen ? <ArrowForwardIosIcon /> : <ArrowBackIosNewIcon />}
       </button>
-
-      <div id="main-content"></div>
     </>
   );
 }

@@ -1,10 +1,18 @@
 import React from "react";
 import Layout from "./Layout";
+import { useNavigate } from "react-router-dom";
 
 function Income({ onLogout }) {
+  const navigate = useNavigate();
+
+  const handleUserLogout = (event) => {
+    onLogout();
+    navigate("/");
+  };
+
   return (
     <>
-      <Layout onLogout={onLogout} />
+      <Layout onLogout={handleUserLogout} />
       <div id="incomeHeader">
         <h1 id="incomeTitle" className="text-3xl text-center">
           Income
@@ -12,7 +20,7 @@ function Income({ onLogout }) {
       </div>
       <div
         id="content"
-        className="flex items-center justify-center h-screen bg-gray-100"
+        className="flex items-center justify-center pt-3 bg-gray-100"
       >
         <form
           id="expenseForm"
