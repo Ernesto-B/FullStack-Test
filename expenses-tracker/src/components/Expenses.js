@@ -5,8 +5,9 @@ import Layout from "./Layout";
 function Expenses({ onLogout }) {
   const navigate = useNavigate();
   const [transactionName, setTransactionName] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
-  const [frequency, setFrequency] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [date, setDate] = useState("");
+  const [frequency, setFrequency] = useState("one time");
   const [cost, setCost] = useState(0);
   const [details, setDetails] = useState("");
 
@@ -14,6 +15,32 @@ function Expenses({ onLogout }) {
     onLogout();
     navigate("/");
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = {
+      transactionName,
+      date,
+      cost,
+      frequency,
+      paymentMethod,
+      details,
+    };
+
+    console.log(formData);
+  };
+
+  const formData = {
+    transactionName,
+    date,
+    cost,
+    frequency,
+    paymentMethod,
+    details,
+  };
+
+  console.log(formData);
 
   return (
     <>
@@ -28,6 +55,7 @@ function Expenses({ onLogout }) {
         <form
           id="expenseForm"
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          onSubmit={handleSubmit}
         >
           <div id="transaction" className="mb-6">
             <label
@@ -41,6 +69,7 @@ function Expenses({ onLogout }) {
               type="text"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               onChange={(e) => setTransactionName(e.target.value)}
+              value={transactionName}
             />
           </div>
           <div className="mb-6">
@@ -54,6 +83,7 @@ function Expenses({ onLogout }) {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="cost"
               type="text"
+              value={cost}
               onChange={(e) => setCost(e.target.value)}
             />
           </div>
@@ -68,6 +98,8 @@ function Expenses({ onLogout }) {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="date"
               type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
             />
           </div>
           <div className="mb-6">
@@ -80,10 +112,12 @@ function Expenses({ onLogout }) {
             <select
               id="paymentMethod"
               className="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              value={paymentMethod}
+              onChange={(e) => setPaymentMethod(e.target.value)}
             >
-              <option>Cash</option>
-              <option>Credit</option>
-              <option>Debit</option>
+              <option value="cash">Cash</option>
+              <option value="credit">Credit</option>
+              <option value="debit">Debit</option>
             </select>
           </div>
           <div className="mb-6">
@@ -96,11 +130,13 @@ function Expenses({ onLogout }) {
             <select
               id="frequency"
               className="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              value={frequency}
+              onChange={(e) => setFrequency(e.target.value)}
             >
-              <option>One Time</option>
-              <option>Weekly</option>
-              <option>Monthly</option>
-              <option>Annually</option>
+              <option value="one time">One Time</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="annually">Annually</option>
             </select>
           </div>
           <div className="mb-4">
@@ -111,6 +147,7 @@ function Expenses({ onLogout }) {
               placeholder="Additional notes about the expense"
               className="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               onChange={(e) => setDetails(e.target.value)}
+              value={details}
             ></textarea>
           </div>
           <div className="mb-6">
